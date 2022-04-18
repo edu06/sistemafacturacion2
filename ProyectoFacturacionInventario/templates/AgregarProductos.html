@@ -1,0 +1,125 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load filters  %}
+{% block crearproductos %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row fila1 mb-1" >    
+      <div class ="col-lg-8">
+      <div class="card-body">   
+      <div class ="col-lg-11">
+     
+         <div class ="card header "style="background-color:#102c54" > 
+            <h3 class="card-title"></i><Agregar class="text-white">Agregar producto</h3>
+          </div>
+
+          <div class ="card-body mt-1"style="background-color:#FFBC14">   
+          
+
+                <div class="row fila2 justify-content-left mb-1" > 
+                  <div class =" col-4 columna1   rounded ">    
+                     <label for="{{form2.fecha_registro.name}}">{{form.fecha_registro.label}}</label>
+                    </div>
+                     <div class =" col-3 columna2  rounded ">     
+                        {{form.fecha_registro}}
+                     </div> 
+                 </div> 
+
+                 <div class="row fila3 justify-content-left mb-1" > 
+                  <div class =" col-4 columna1   rounded ">    
+                     <label for="{{form.documento.name}}">{{form.documento.label}}</label>  
+                  </div>
+                  <div class =" col-4 columna2   rounded ">
+                  {{form.documento}}  
+                  </div>
+                  </div> 
+
+       
+
+
+<div class="row fila4  mb-1" > 
+   <div class =" col-4 columna1   rounded ">    
+   <label for="{{form.nombre_producto.name}}">{{form.nombre_producto.label}}</label>   
+   </div>
+   <div class =" col-6 columna2   rounded ">
+      {{form.nombre_producto}}
+   </div>
+   </div> 
+
+ 
+   <div class="row fila4  mb-1" > 
+      <div class =" col-4 columna1   rounded ">    
+      <label for="{{form.existencia.name}}">{{form.existencia.label}}</label>   
+      </div>
+      <div class =" col-2 columna2   rounded ">
+         {{form.existencia}}
+      </div>
+      </div> 
+
+   
+      <div class="row fila5  mb-1" > 
+           <div class =" col-4 columna1   rounded ">    
+              <label for="{{form.cantidad_agregar.name}}">{{form.cantidad_agregar.label}}</label>
+           </div>
+           <div class =" col-2 columna2   rounded ">
+              {{form.cantidad_agregar}}
+           </div>
+           </div>  
+
+
+           <div class="row fila6 justify-content-left mb-1" > 
+            <div class =" col-4 columna1   rounded ">    
+               <label for="{{form.precio_compra.name}}">{{form.precio_compra.label}} 
+                         
+            </div>
+            <div class =" col-3 columna2   rounded ">
+               {{form.precio_compra}}
+            </div>
+            </div>    
+
+
+
+           <div class="row fila5  mb-1" > 
+            <div class =" col-4 columna1   rounded ">    
+               <label for="{{form.sucursal.name}}">{{form.sucursal.label}}</label>
+            </div>
+            <div class =" col-4 columna2   rounded ">
+               {{form.sucursal}}
+            </div>
+            </div>   
+            
+            <div class="row fila9 justify-content-left mb-1" > 
+               <div class =" col-4 columna1   rounded ">    
+                  <label for="{{form.fecha_vencimiento.name}}">{{form.fecha_vencimiento.label}}</label> 
+               </div>
+               <div class =" col-3 columna2 rounded" id="date"  type="text" placeholder="Opcional" >
+                {{form.fecha_vencimiento}}
+               </div>
+
+              
+                        
+                                          <div class="row fila13 justify-content-center mb-1 mt-5" > 
+                                             <div class =" col-3  columna1   rounded ">    
+                                               <button  type="submit" class="btn btn-success" >Guardar</button> 
+                    
+                                                                                       
+                                             </div>
+                                             <div class =" col-3  columna2 block-content-end   rounded ">
+                                                <button type="reset"  class="btn btn-info">Limpiar</button>
+                                             </div>
+                                             <div class =" col-3  columna2 block-content-end   rounded ">
+                                                <a class= "btn btn-danger" href="{% url 'buscar_productos' %}">Regresar</a>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div> 
+                                 </div>
+                              <div class="col-3 columna4 mt-2">
+                                 <img src="{% static 'img/prod.jpg' %}" class="img-fluid rounded float-end" alt="Cinque Terre" >
+                              </div>
+                           
+                           </div>
+                        </div> 
+                     </div>
+                        </form> 
+                     {% endblock %}

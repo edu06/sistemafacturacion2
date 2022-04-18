@@ -1,0 +1,57 @@
+{%extends 'base.html' %}
+{% block listaproveedor %}
+{% load static %}
+{% csrf_token %}
+
+<div class="row fila1  mb-1 mt-2" >
+    <div class ="col-1 columna1 rounded ">
+  </div> 
+
+ <div class ="col-8 columna2 rounded ">
+  <form class="form-inline my-2 my-lg-6" method="GET">
+      <input class="form-control mr-sm-2" type="text" name="buscar" placeholder="Buscar Productos..">
+      <button class="btn btn-warning my-2 my-sm-0" type="submit">Buscar</button> 
+  </form>
+  </div>
+</div>
+<table class="table table-bordered "style="background-image:url({% static 'img/f5.jpg'%});">
+<thead>
+    <tr>
+        <td><b>Código</b></td>
+        <td><b>Existencia</b></td>
+        <td><b>Nombre</b></td>
+        <td><b>Descripcion</b></td>
+        <td><b>Precio Compra</b></td>
+        <td><b>Precio Venta</b></td>
+        <td><b>Fecha Ingreso</b></td>
+        <td><b>Fecha Vencimiento</b></td>
+        <td><b>Codigo Lote</b></td>
+        <td><b>Marca</b></td>
+        <td><b>Nombre Proveedor</b></td>
+        <td><b>Acción</b></td>
+    </tr>
+    {% if producto %}
+       {% for productos in producto %}  
+     <tr>
+        <td>{{productos.id}}</td>
+        <td>{{productos.cantidad}}</td>
+        <td>{{productos.nombre_producto}}</td>
+        <td>{{productos.descripcion_producto}}</td>
+        <td>{{productos.detalle_producto.precio_compra}}</td>
+        <td>{{productos.detalle_producto.precio_venta}}</td>
+        <td>{{productos.detalle_producto.fecha_ingreso}}</td>
+        <td>{{productos.detalle_producto.fecha_vencimiento}}</td>
+        <td>{{productos.detalle_producto.descripcion_codigo_lote}}</td>
+        <td>{{productos.detalle_producto.marca.descripcion_marca}}</td>
+        <td>{{productos.detalle_producto.proveedor.nombre_proveedor}}</td>
+        <td>
+           <a class= "btn btn-info" href="{% url 'borrar_productos' productos.id %}">Borrar</a>
+        </td> 
+      </tr>
+           {% endfor %}
+    {% else %}
+      <h1> No hay registros de solicitudes </h1>
+    {% endif %} 
+</tbody>
+</table>
+{% endblock %}

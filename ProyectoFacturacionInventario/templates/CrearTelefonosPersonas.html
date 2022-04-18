@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block crearproveedor %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row fila1 mb-1" >    
+      <div class ="col-lg-8">
+      <div class="card-body">   
+      <div class ="col-lg-11">
+         <div class ="card header "style="background-color:#102c54" > 
+            <h3 class="card-title"  ><Agregar class="text-white">Agregar telefonos personas</h3>
+          </div>
+
+   <div class ="card-body mt-1"style="background-color:#FFBC14">  
+     <div class="row fila1 justify-content-left mb-1" > 
+         <div class =" col-4 columna1   rounded ">    
+            <label for="{{form.numero_telefono.name}}">{{form.numero_telefono.label}}</label> 
+         </div>
+         <div class =" col-3 columna2 rounded ">
+            {{form.numero_telefono}}
+         </div>
+         </div>  
+       
+         <div class="row fila2 justify-content-left mb-1" > 
+            <div class =" col-4 columna1   rounded ">    
+               <label for="{{form.persona.name}}">{{form.persona.label}}</label>  
+            </div>
+            <div class =" col-6 columna2   rounded ">
+               {{form.persona}}
+            </div>
+            </div>   
+                        
+            <div class="row fila13 justify-content-center mb-1 mt-5" > 
+               <div class =" col-3  columna1   rounded ">    
+                 <button type="submit" class="btn btn-success">Guardar</button>
+               </div>
+               <div class =" col-3  columna2 block-content-end   rounded ">
+                  <button type="reset"  class="btn btn-info">Limpiar</button>
+               </div>
+               <div class =" col-3  columna2 block-content-end   rounded ">
+                  <a class= "btn btn-danger" href="{% url 'index' %}">Regresar</a>
+               </div>
+            </div> 
+            
+         </div>
+            
+         </div>
+               </div> 
+</div>
+<div class ="col-4 columna1 rounded " >
+   <img src="{% static 'img/cel.jpg' %}" class="img-fluid rounded float-end" alt="Cinque Terre">  
+</div>
+</div>
+</form>
+{% endblock %}

@@ -1,0 +1,49 @@
+{%extends 'base.html' %}
+{% block listacolaborador %}
+{% load static %}
+{% csrf_token %}
+
+<div class="row fila1  mb-1 mt-2" >
+    <div class ="col-1 columna1 rounded ">
+  </div> 
+
+ <div class ="col-8 columna2 rounded ">
+  <form class="form-inline my-2 my-lg-8" method="GET">
+      <input class="form-control mr-sm-2" type="text" name="buscar" placeholder="Buscar por DPI..">
+      <button class="btn btn-warning my-2 my-sm-0" type="submit">Buscar</button> 
+  </form>
+  </div>
+</div>
+
+<div class ="card-body mt-1 mb-2"> 
+<table class="table table-bordered "style="background-image:url({% static 'img/f100.jpg'%});">
+<thead>
+    <tr style="background-color:#BEC0BC" >
+      
+        <td><b>Código</b></td>
+        <td><b>DPI</b></td>
+        <td><b>Nombre</b></td>
+        <td><b>Direccion</b></td>
+        <td><b>Telefono</b></td>
+        <td><b>Acción</b></td>
+    
+      </tr>
+    {% if colaborador %}
+       {% for colaboradores in colaborador %}  
+     <tr>
+        <td>{{colaboradores.id}}</td>
+        <td>{{colaboradores.DPI_Colaborador}}</td>
+        <td>{{colaboradores.persona.nombre_persona}} {{colaboradores.persona.apellido_persona}} </td>
+        <td>{{colaboradores.persona.direccion_persona}}</td>
+        <td>{{colaboradores.persona.telefono_persona}}</td>
+        <td>
+          <a class= "btn btn-info" href="{% url 'editar_colaboradores' colaboradores.id %}">Editar</a>
+        </td> 
+      </tr>
+           {% endfor %}
+    {% else %}
+      <h1> No hay registros de colaboradores </h1>
+    {% endif %} 
+</table>
+</div>
+{% endblock %}

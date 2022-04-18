@@ -1,0 +1,157 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block actualizarproductos %}
+<form method="POST">
+{% csrf_token %}
+<div class="row fila1 mb-1" >    
+   <div class ="col-lg-8">
+   <div class="card-body">   
+   <div class ="col-lg-11">
+
+   <div class ="card header "style="background-color:#F18517" > 
+         <h3 class="card-title"> Editar producto </h3> 
+   </div>
+
+<div class ="card-body mt-1"style="background-color:#DEE3E2"> 
+<div class="row fila3 justify-content-left mb-1" > 
+   <div class =" col-4 columna1   rounded ">    
+      <label for="{{form.existencia.name}}">{{form.existencia.label}}</label>  
+   </div>
+   <div class =" col-4 columna2 rounded "readonly>
+   {{ form.existencia}}  
+   </div>
+   </div> 
+
+     
+  <div class="row fila3 justify-content-left mb-1" > 
+  <div class =" col-4 columna1   rounded ">    
+     <label for="{{form.nombre_producto.name}}">{{form.nombre_producto.label}}</label>  
+  </div>
+  <div class =" col-4 columna2   rounded ">
+  {{form.nombre_producto}}  
+  </div>
+  </div>       
+       
+  <div class="row fila4  mb-1" > 
+     <div class =" col-4 columna1   rounded ">    
+     <label for="{{form.descipcion_producto.name}}">{{form.descripcion_producto.label}}</label>   
+     </div>
+     <div class =" col-6 columna2   rounded ">
+     {{form.descripcion_producto}}
+     </div>
+     </div> 
+  
+     <div class="row fila5  mb-1" > 
+        <div class =" col-4 columna1   rounded ">    
+           <label for="{{form.prefijo.name}}">{{form.prefijo.label}}</label>
+        </div>
+        <div class =" col-3 columna2   rounded ">
+           {{form.prefijo}}
+        </div>
+        </div>
+
+        <div class="row fila5  mb-1" > 
+         <div class =" col-4 columna1   rounded ">    
+            <label for="{{form.categoria_producto.name}}">{{form.categoria_producto.label}}</label>
+         </div>
+         <div class =" col-3 columna2   rounded ">
+            {{form.categoria_producto}}
+         </div>
+         </div>
+
+  
+        
+        <div class="row fila7 justify-content-left mb-1" > 
+           <div class =" col-4 columna1   rounded ">    
+              <label for="{{form2.precio_venta.name}}">{{form2.precio_venta.label}}</label> 
+           </div>
+           <div class =" col-3 columna2 rounded ">
+              {{form2.precio_venta}}
+           </div>
+           </div>  
+         
+           <div class="row fila8 justify-content-left mb-1" > 
+              <div class =" col-4 columna1   rounded ">    
+                 <label for="{{form2.fecha_creacion.name}}">{{form2.fecha_creacion.label}}</label>  
+              </div>
+              <div class =" col-3 columna2 rounded "value="disabled" >
+                 
+                 {{form2.fecha_creacion}}
+                 <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+              </div>
+              </div>   
+             
+ 
+     
+                 <div class="row fila10 justify-content-left mb-1" > 
+                    <div class =" col-4 columna1   rounded ">    
+                       <label for="{{form2.cantidad_min_stock.name}}">{{form2.cantidad_min_stock.label}}</label>
+                    </div>
+                    <div class =" col-3 columna2   rounded ">
+                       {{form2.cantidad_min_stock}}
+                    </div>
+                    </div>   
+          
+                    <div class="row fila11 justify-content-left mb-1" > 
+                       <div class =" col-4 columna1   rounded ">    
+                          <label for="{{form2.estado_producto.name}}">{{form2.estado_producto.label}}</label>
+                       </div>
+                       <div class =" col-3 columna2 rounded">
+                         {{form2.estado_producto}}
+                                         
+                       </div>
+                       </div> 
+       
+ 
+                          <div class="row fila12 justify-content-left mb-1" > 
+                                <div class =" col-4 columna1   rounded ">    
+                                   <label for="{{form2.proveedor.name}}">{{form2.proveedor.label}}</label>
+                                </div>
+                                <div class =" col-4 columna2   rounded ">
+                                   {{form2.proveedor}}
+                                </div>
+                                </div>
+  
+                                <div class="row fila12 justify-content-left mb-1" > 
+                                      <div class =" col-4 columna1   rounded ">    
+                                         <label for="{{form2.marca.name}}">{{form2.marca.label}}</label>
+                                      </div>
+                                      <div class =" col-4 columna2   rounded ">
+                                         {{form2.marca}}
+                                      </div>
+                                      </div>
+  
+                                <div class="row fila12 justify-content-left mb-1" > 
+                                            <div class =" col-4 columna1   rounded ">    
+                                               <label for="{{form2.unidad_medida.name}}">{{form2.unidad_medida.label}}</label>
+                                            </div>
+                                            <div class =" col-4 columna2   rounded ">
+                                               {{form2.unidad_medida}}
+                                            </div>
+                                            </div>
+
+
+
+ 
+  
+
+
+                       <div class="row fila13 justify-content-center mb-1 mt-5" > 
+                        <div class =" col-4  columna1   rounded ">    
+                          <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                        </div>
+                        <div class =" col-3  columna2 block-content-end   rounded ">
+                           <a class= "btn btn-warning" href="{% url 'buscar_productos' %}">Regresar</a>
+                        </div>
+                     </div> 
+                           
+                                </div>
+                                </div> 
+</div>
+</div> 
+<div class="col-3 columna4 mt-2">
+   <img src="{% static 'img/productos.png' %}" class="img-fluid rounded float-end" alt="Cinque Terre">
+</div>
+</div>
+</form>
+{% endblock %}

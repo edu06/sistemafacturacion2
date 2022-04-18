@@ -1,0 +1,4 @@
+
+*poder hacer los reportes de ventas en rango de fecha, y existencia de productos por sucursales. 
+*Poder anular facturas y que el producto regrese a su estado original. 
+*poder hacer traslados de productos entre sucursales y dejar un registro de ello. 

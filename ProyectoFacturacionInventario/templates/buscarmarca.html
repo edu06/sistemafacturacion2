@@ -1,0 +1,45 @@
+{%extends 'base.html' %}
+{% block buscamarcas %}
+{% load static %}
+{% csrf_token %}
+<div class="card-body">   
+   <div class ="col-lg-8">
+   
+   
+   <div class ="col-6 columna2 rounded ">
+   <form class="form-inline my-4 my-lg-8" method="GET">
+     <div class="col-6 columna1 mt-1"> 
+      <input class="form-control mr-sm-4" type="text" name="buscar" placeholder="Buscar Marcas..">
+      <button class="btn btn-warning my-2 my-sm-2" type="submit">Buscar</button>
+     </div>  
+   </form>
+</div>
+
+
+<table class="table table-bordered "style="background-image:url({% static 'img/f10.jpg'%});">
+<thead>
+    <tr style="background-color:#BE3D" >
+      
+        <td><b>Código</b></td>
+        <td><b>Marca</b></td>
+        <td><b>Categoria</b></td>
+        <td><b>Acción</b></td>
+    </tr>
+    {% if marca %}
+       {% for marcas in marca %}  
+     <tr>
+        <td>{{marcas.id}}</td>
+        <td>{{marcas.descripcion_marca}}</td>
+        <td>{{marcas.categoria}}</td>
+        <td>
+         
+        </td> 
+     </tr>
+           {% endfor %}
+    {% else %}
+      <h1> No existen registros de marcas </h1>
+    {% endif %} 
+</table>
+</div>
+</div>
+{% endblock %}

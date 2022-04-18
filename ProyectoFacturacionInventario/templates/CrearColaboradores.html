@@ -1,0 +1,146 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block crearcolaborador %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="row fila1 mb-1" >    
+      <div class ="col-lg-8">
+      <div class="card-body">   
+      <div class ="col-lg-11">
+            
+      <div class ="card header "style="background-color:#FFBC14"  > 
+
+         {% if messages  %}      
+         {% for message in messages  %}
+         <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message  }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>  
+         {% endfor %} 
+         {% endif %}
+
+          <h3 class="card-title"></i>Crear colaborador</h3>
+      </div>
+      
+<div class ="card-body mt-1"style="background-color:#DEE3E2"> 
+ <div class="row fila2 justify-content-left mb-1" > 
+ <div class =" col-4 columna1   rounded ">    
+    <label for="{{form.DPI_Colaborador.name}}">{{form.DPI_Colaborador.label}}</label>
+   </div>
+    <div class =" col-4 columna2  rounded ">     
+       {{form.DPI_Colaborador}}
+    </div> 
+</div>  
+   
+<div class="row fila3 justify-content-left mb-1" > 
+<div class =" col-4 columna1   rounded ">    
+   <label for="{{form.correo_colaborador.name}}">{{form.correo_colaborador.label}}</label>  
+</div>
+<div class =" col-5 columna2   rounded ">
+{{form.correo_colaborador}}  
+</div>
+</div>       
+     
+<div class="row fila4  mb-1" > 
+   <div class =" col-4 columna1   rounded ">    
+   <label for="{{form.estado_colaborador.name}}">{{form.estado_colaborador.label}}</label>   
+   </div>
+   <div class =" col-2 columna2   rounded ">
+   {{form.estado_colaborador}}
+   </div>
+   </div> 
+
+   <div class="row fila5  mb-1" > 
+      <div class =" col-4 columna1   rounded ">    
+         <label for="{{form.prefijo.name}}">{{form.prefijo.label}}</label>
+      </div>
+      <div class =" col-2 columna2   rounded ">
+         {{form.prefijo}}
+      </div>
+      </div>
+
+      <div class="row fila6 justify-content-left mb-1" > 
+         <div class =" col-4 columna1   rounded ">    
+            <label for="{{form.perfil_colaborador.name}}">{{form.perfil_colaborador.label}} 
+                      
+         </div>
+         <div class =" col-3 columna2   rounded ">
+            {{form.perfil_colaborador}}
+         </div>
+         </div>    
+        
+      <div class="row fila7 justify-content-left mb-1" > 
+         <div class =" col-4 columna1   rounded ">    
+            <label for="{{form2.nombre_persona.name}}">{{form2.nombre_persona.label}}</label> 
+         </div>
+         <div class =" col-4 columna2 rounded ">
+            {{form2.nombre_persona}}
+         </div>
+         </div>  
+       
+         <div class="row fila8 justify-content-left mb-1" > 
+            <div class =" col-4 columna1   rounded ">    
+               <label for="{{form2.apellido_persona.name}}">{{form2.apellido_persona.label}}</label>  
+            </div>
+            <div class =" col-4 columna2 rounded "value="disabled" >
+               
+               {{form2.apellido_persona}}
+              
+            </div>
+            </div>   
+           
+        
+            <div class="row fila9 justify-content-left mb-1" > 
+               <div class =" col-4 columna1   rounded ">    
+                  <label for="{{form2.direccion_persona.name}}">{{form2.direccion_persona.label}}</label> 
+               </div>
+               <div class =" col-5 columna2 rounded" id="date"  type="text" >
+                {{form2.direccion_persona}}
+               </div>
+            </div>
+               <div class="row fila10 justify-content-left mb-1" > 
+                  <div class =" col-4 columna1   rounded ">    
+                     <label for="{{form2.nit_persona.name}}">{{form2.nit_persona.label}}</label>
+                  </div>
+                  <div class =" col-3 columna2   rounded ">
+                     {{form2.nit_persona}}
+                  </div>
+                  </div>   
+        
+                  <div class="row fila11 justify-content-left mb-1" > 
+                     <div class =" col-4 columna1   rounded ">    
+                        <label for="{{form2.telefono_persona.name}}">{{form2.telefono_persona.label}}</label>
+                     </div>
+                     <div class =" col-3 columna2 rounded">
+                       {{form2.telefono_persona}}
+                                       
+                     </div>
+                     </div> 
+     
+                                           
+                                          <div class="row fila13 justify-content-center mb-1 mt-5" > 
+                                             <div class =" col-3  columna1   rounded ">    
+                                               <button type="submit" class="btn btn-success">Guardar</button>
+                                             </div>
+                                             <div class =" col-3  columna2 block-content-end   rounded ">
+                                                <button type="reset"  class="btn btn-info">Limpiar</button>
+                                             </div>
+                                             <div class =" col-3  columna2 block-content-end   rounded ">
+                                                <a class= "btn btn-warning" href="{% url 'index' %}">Regresar</a>
+                                             </div>
+                                          </div> 
+ 
+         </div>
+      </div>
+      </div>
+      </div>
+<div class="col-4 columna4 mt-2">
+   <img src="{% static 'img/colab.jpg' %}" class="img-fluid rounded float-end" alt="Cinque Terre">
+</div>
+
+</div>
+
+</form>
+{% endblock %}

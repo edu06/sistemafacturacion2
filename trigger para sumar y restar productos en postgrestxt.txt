@@ -1,0 +1,28 @@
+
+
+CREATE OR REPLACE  
+FUNCTION sumarprod() 
+RETURNS TRIGGER AS $$ 
+BEGIN
+Update "appFactInv_productos"
+set existencia = existencia + new.cantidad_agregar 
+where new.producto_id=id;
+RETURN NEW;
+END;
+$$ 
+LANGUAGE plpgsql;
+
+CREATE TRIGGER agregar_producto AFTER INSERT ON "appFactInv_agregar_productos" FOR EACH ROW 
+EXECUTE PROCEDURE sumarprod();
+
+__________________________________________________________________________
+PARA BORRAR LA FUNCION 
+
+DROP FUNCTION sumarprod();
+
+__________________________________________________________________________
+PARA BORRAR EL TRIGGER
+
+DROP TRIGGER IF EXISTS agregar_producto 
+ON "appFactInv_agregar_productos";
+__________________________________________________________________________

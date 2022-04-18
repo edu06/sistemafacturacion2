@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style>
+    .img-invoice {
+        width: 50px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .head {
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    #invoice thead tr th {
+        text-align: left;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        padding-top: 4px;
+    }
+
+    #invoice thead tr {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    #invoice tbody tr {
+        padding: 0;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+</style>
+<body>
+
+
+    <b>FECHA:</b>{{ venta.fecha_venta }}<br>
+    <b>CLIENTE:</b> {{ venta.cliente.nombre_persona }} {{  venta.cliente.apellido_persona }}  <br>
+    <b>NIT:</b> {{ venta.cliente.nit_persona }}<br>
+    <b>DIRECCION:</b> {{ venta.cliente.direccion_persona }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>Vendedor</b></td>  {{ venta.colaborador.persona.nombre_persona }}</td></div> 
+    <br> 
+
+
+<table id="pdffact   padding-top: 10px; ">
+    <thead>
+    <tr>
+        <th style="width: 10%; padding-top: 10px;">CANT</th>
+        <th style="width: 35%; padding-top: 10px; ">DESCRIPCION PRODUCTO</th>
+        <th style="width: 10%; padding-top: 10px;">PRECIO</th>
+        <th style="width: 10%; padding-top: 10px; ">SUBTOTAL</th>
+    </tr>
+    </thead>
+
+
+    <tbody>
+        {% for d in venta.detalle_factura_set.all %}
+            <tr {% if forloop.first %}style="padding-top: 3px;" {% endif %}>
+                <td class="text-center">{{ d.cantidad }}</td>
+                <td class="text-center">{{ d.producto.descripcion_producto }}</td>
+                <td class="text-center">Q {{ d.producto.precio_venta }}</td>
+                <td class="text-center">Q {{ d.subtotal }}</td>
+  
+            </tr>
+
+        {% endfor %}
+ 
+     </tbody>
+    <tr style="padding-top: 50px; padding-left:10px ;">
+        <td colspan="3"> <b>TOTAL A PAGAR</b></td>
+        <td style="text-center"> <b>Q {{ venta.total }}</b></td>
+    </tr>
+
+
+
+
+
+</table>
+<table style="margin-top: 100px; padding-left:10px ; ">
+    <thead>
+    <tr>
+        <tr>
+            <th>-----GRACIAS POR SU COMPRA-----</th>
+        </tr>
+        <tr>
+            <th>No se aceptan cambios ni devoluciones</th>
+        </tr>
+        <tr>
+            <th>Sujeto a pagos trimestrales</th>
+        </tr>
+    
+    </thead>
+</table>
+</body>
+</html>
+

@@ -1,0 +1,143 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block actualizarproveedor %}
+
+<form method="POST">
+{% csrf_token %}
+
+<div class="row fila1 mb-1" >    
+   <div class ="col-lg-8">
+   <div class="card-body">   
+   <div class ="col-lg-11">
+      
+   <div class ="card header "style="background-color:#F18517" > 
+         <h3 class="card-title"> Editar Proveedor </h3> 
+   </div>  
+ 
+<div class ="card-body mt-1"style="background-color:#DEE3E2"> 
+
+
+<div class="row fila3 justify-content-left mb-1" > 
+<div class =" col-4 columna1   rounded ">    
+   <label for="{{form.nombre_proveedor.name}}">{{form.nombre_proveedor.label}}</label>
+  </div>
+   <div class =" col-6 columna2  rounded ">     
+      {{form.nombre_proveedor}}
+   </div> 
+</div>  
+  
+<div class="row fila4 justify-content-left mb-1" > 
+<div class =" col-4 columna1   rounded ">    
+  <label for="{{form.direccion_proveedor.name}}">{{form.direccion_proveedor.label}}</label>  
+</div>
+<div class =" col-6 columna2   rounded ">
+{{form.direccion_proveedor}}  
+</div>
+</div>       
+    
+<div class="row fila5  mb-1" > 
+  <div class =" col-4 columna1   rounded ">    
+  <label for="{{form.telefono_proveedor.name}}">{{form.telefono_proveedor.label}}</label>   
+  </div>
+  <div class =" col-3 columna2   rounded ">
+  {{form.telefono_proveedor}}
+  </div>
+  </div> 
+
+  <div class="row fila6  mb-1" > 
+     <div class =" col-4 columna1   rounded ">    
+        <label for="{{form.nit_proveedor.name}}">{{form.nit_proveedor.label}}</label>
+     </div>
+     <div class =" col-3 columna2   rounded ">
+        {{form.nit_proveedor}}
+     </div>
+     </div>
+
+     <div class="row fila7 justify-content-left mb-1" > 
+        <div class =" col-4 columna1   rounded ">    
+           <label for="{{form.estado_proveedor.name}}">{{form.estado_proveedor.label}} 
+         
+             
+        </div>
+        <div class =" col-3 columna2   rounded ">
+           {{form.estado_proveedor}}
+        </div>
+        </div>    
+       
+     <div class="row fila8 justify-content-left mb-1" > 
+        <div class =" col-4 columna1   rounded ">    
+           <label for="{{form.prefijo.name}}">{{form.prefijo.label}}</label> 
+        </div>
+        <div class =" col-3 columna2   rounded ">
+           {{form.prefijo}}
+        </div>
+        </div>  
+      
+        <div class="row fila9 justify-content-left mb-1" > 
+           <div class =" col-4 columna1   rounded ">    
+              <label for="{{form2.nombre_persona.name}}">{{form2.nombre_persona.label}}</label>  
+           </div>
+           <div class =" col-5 columna2   rounded ">
+              {{form2.nombre_persona}}
+           </div>
+           </div>   
+     
+       
+           <div class="row fila10 justify-content-left mb-1" > 
+              <div class =" col-4 columna1   rounded ">    
+                 <label for="{{form2.apellido_persona.name}}">{{form2.apellido_persona.label}}</label> 
+              </div>
+              <div class =" col-5 columna2   rounded ">
+               {{form2.apellido_persona}}
+              </div>
+              </div>    
+  
+              <div class="row fila11 justify-content-left mb-1" > 
+                 <div class =" col-4 columna1   rounded ">    
+                    <label for="{{form2.direccion_persona.name}}">{{form2.direccion_persona.label}}</label>
+                 </div>
+                 <div class =" col-6 columna2   rounded ">
+                    {{form2.direccion_persona}}
+                 </div>
+                 </div>   
+       
+                 <div class="row fila12 justify-content-left mb-1" > 
+                    <div class =" col-4 columna1   rounded ">    
+                       <label for="{{form2.nit_persona.name}}">{{form2.nit_persona.label}}</label>
+                    </div>
+                    <div class =" col-3 columna2 rounded">
+                      {{form2.nit_persona}}
+                                      
+                    </div>
+                    </div> 
+    
+                    <div class="row fila13 justify-content-left mb-1" > 
+                       <div class =" col-4 columna1   rounded ">    
+                          <label for="{{form2.telefono_persona.name}}">{{form2.telefono_persona.label}}</label>
+                       </div>
+                       <div class =" col-3 columna2   rounded ">
+                          {{form2.telefono_persona}}
+                       </div>
+                       </div> 
+
+                       <div class="row fila13 justify-content-center mb-1 mt-5" > 
+                        <div class =" col-4  columna1   rounded ">    
+                          <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                        </div>
+                        <div class =" col-3  columna2 block-content-end   rounded ">
+                           <a class= "btn btn-warning" href="{% url 'buscar_proveedores' %}">Regresar</a>
+                        </div>
+                     </div>
+                  </div>                  
+                </div>  
+         </div>
+      </div>
+
+
+
+<div class="col-4 columna4 mt-2">
+   <img src="{% static 'img/proveedores.png' %}" class="img-fluid rounded float-end" alt="Cinque Terre">
+</div>
+</div>
+</form>
+{% endblock %}

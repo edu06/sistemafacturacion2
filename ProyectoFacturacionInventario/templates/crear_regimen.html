@@ -1,0 +1,103 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block crearregimen %}
+<div class="row fila1 mb-1" >    
+   <div class ="col-lg-6">
+   <div class="card-body">   
+   <div class ="col-lg-11">
+  
+     <div class ="card header "style="background-color:#FFBC14" > 
+         <h3 class="card-title"></i>Crear Regimenes</h3>
+     </div>
+       <div class ="card-body mt-1"style="background-color:#DEE3E2">            
+   <form  method="POST" >{% csrf_token %} 
+         
+         <div class="form-group">
+         <div class="row fila8 justify-content-left mb-1" > 
+         <div class =" col-4 columna1   rounded ">    
+            <label for="{{form.descripcion_regimen.name}}">{{form.descripcion_regimen.label}}</label>  
+         </div>
+         <div class =" col-6 columna2   rounded ">
+            {{form.descripcion_regimen}}
+         </div>
+         </div>
+
+
+         <div class="row fila8 justify-content-left mb-1" > 
+            <div class =" col-4 columna1   rounded ">    
+               <label for="{{form.impuesto_regimen.name}}">{{form.impuesto_regimen.label}}</label>  
+            </div>
+            <div class =" col-2 columna2   rounded ">
+               {{form.impuesto_regimen}}
+            </div>
+            </div>
+     
+                     <div class="row fila13 justify-content-center mb-1 mt-5" > 
+                        <div class =" col-3  columna1   rounded ">    
+                          <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
+                        <div class =" col-3  columna2 block-content-end   rounded ">
+                           <button type="reset"  class="btn btn-info">Limpiar</button>
+                        </div>
+                        <div class =" col-3  columna2 block-content-end   rounded ">
+                           <a class= "btn btn-warning" href="{% url 'index' %}">Regresar</a>
+                        </div>
+                     </div>
+               </div> 
+         </form>
+         
+         {% if messages  %}      
+         {% for message in messages  %}
+         <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message  }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>  
+         {% endfor %} 
+         {% endif %}
+
+
+    </div>
+</div> 
+</div>
+<div class="col-7 columna4 mt-1">
+<img src="{% static 'img/12.jpg' %}" class="img-fluid rounded float-end" alt="Cinque Terre">
+</div>
+</div>
+{% endblock %}
+{% block listarregimenes %}
+
+<div class="card-body">   
+   <div class ="col-lg-7">
+   
+   
+<table class="table table-bordered "style="background-image:url({% static 'img/f100.jpg'%});">
+<thead>
+    <tr style="background-color:#FFBC14" >
+      
+        <td><b>Código</b></td>
+        <td><b>Descripcion Regimen</b></td>
+        <td><b>Impuesto Regimen</b></td>
+        <td><b>Acción</b></td>
+    </tr>
+
+    {% if lregimen %}
+       {% for c in lregimen %}  
+     <tr>
+        <td>{{c.id }}</td>
+        <td>{{c.descripcion_regimen }}</td>
+        <td>{{c.impuesto_regimen }}</td>
+        <td>
+         <a class= "btn btn-info" href="{% url 'editar_regimen' c.id %}">Editar</a>
+       </td>
+     </tr>
+           {% endfor %}
+    {% else %}
+      <h1> No existen registros de regimenes </h1>
+    {% endif %} 
+
+</table>
+</div> 
+</div>
+{% endblock %}

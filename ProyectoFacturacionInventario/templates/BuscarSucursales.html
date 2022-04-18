@@ -1,0 +1,47 @@
+{%extends 'base.html' %}
+{% block listaproveedor %}
+{% load static %}
+{% csrf_token %}
+
+<div class="row fila1  mb-1 mt-2" >
+    <div class ="col-1 columna1 rounded ">
+  </div> 
+
+ <div class ="col-8 columna2 rounded ">
+  <form class="form-inline my-2 my-lg-6" method="GET">
+      <input class="form-control mr-sm-2" type="text" name="buscar" placeholder="Buscar por Nombre...">
+      <button class="btn btn-warning my-2 my-sm-0" type="submit">Buscar</button> 
+  </form>
+  </div>
+</div>
+
+<div class ="card-body mt-1 mb-2"> 
+<table class="table table-bordered "style="background-image:url({% static 'img/f5.jpg'%});">
+<thead>
+    <tr  style="background-color:#BEC0BC">
+        <td><b>Código</b></td>
+        <td><b>Nombre sucursal</b></td>
+        <td><b>Direccion sucursal</b></td>
+        <td><b>Telefono sucursal</b></td>
+        <td><b>Colaborador encargado</b></td>
+        <td><b>Acción</b></td>
+    </tr>
+    {% if sucursal %}
+       {% for sucursales in sucursal %}  
+     <tr>
+        <td>{{sucursales.id}}</td>
+        <td>{{sucursales.nombre_sucursal}}</td>
+        <td>{{sucursales.direccion_sucursal}}</td>
+        <td>{{sucursales.telefono_sucursal}}</td>
+        <td>{{sucursales.colaborador_encargado}}</td>
+        <td>
+           <a class= "btn btn-info" href="{% url 'editar_sucursales' sucursales.id %}">Editar</a>
+        </td> 
+      </tr>
+           {% endfor %}
+    {% else %}
+      <h1> No hay registros de solicitudes </h1>
+    {% endif %} 
+</table>
+</div> 
+{% endblock %}

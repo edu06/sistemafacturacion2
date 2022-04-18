@@ -1,0 +1,59 @@
+{%extends 'base.html' %}
+{% block listaproveedor %}
+{% load static %}
+{% csrf_token %}
+
+<div class="row fila1  mb-1 mt-2" >
+    <div class ="col-1 columna1 rounded ">
+  </div> 
+
+ <div class ="col-8 columna2 rounded ">
+  <form class="form-inline my-2 my-lg-6" method="GET">
+      <input class="form-control mr-sm-2" type="text" name="buscar" placeholder="Buscar por Nombre...">
+      <button class="btn btn-warning my-2 my-sm-0" type="submit">Buscar</button> 
+  </form>
+  </div>
+</div>
+
+<div class ="card-body mt-1 mb-2"> 
+<table class="table table-bordered "style="background-image:url({% static 'img/f5.jpg'%});">
+<thead>
+    <tr style="background-color:#BEC0BC">
+        <td><b>Código</b></td>
+        <td><b>Existencia</b></td>
+        <td><b>Nombre</b></td>
+        <td><b>Descripcion</b></td>
+        <td><b>Precio Venta</b></td>
+        <td><b>Fecha Creacion</b></td>
+        <td><b>Marca</b></td>
+        <td><b>Nombre Proveedor</b></td>
+        <td><b>Acción</b></td>
+        <td><b>Acción</b></td>
+ 
+    </tr>
+    {% if producto %}
+       {% for productos in producto %}  
+     <tr>
+        <td>{{productos.id}}</td>
+        <td>{{productos.existencia}}</td>
+        <td>{{productos.nombre_producto}}</td>
+        <td>{{productos.descripcion_producto}}</td>
+        <td>{{productos.precio_venta}}</td>
+        <td>{{productos.detalle_producto.fecha_creacion}}</td>
+        <td>{{productos.detalle_producto.marca.descripcion_marca}}</td>
+        <td>{{productos.detalle_producto.proveedor.nombre_proveedor}}</td>
+        <td>
+          <a class= "btn btn-info" href="{% url 'editar_productos' productos.id %}">Editar</a>          
+        </td> 
+        <td>
+          <a class= "btn btn-info" href="{% url 'agregar_productos' productos.id %}">Agregar</a>          
+        </td> 
+     
+      </tr>
+           {% endfor %}
+    {% else %}
+      <h1> No hay registros de solicitudes </h1>
+    {% endif %} 
+</table>
+</div>
+{% endblock %}

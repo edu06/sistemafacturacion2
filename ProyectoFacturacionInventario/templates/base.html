@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'select2.css' %}">
+  <link rel="stylesheet" href="{% static 'autocomplete-0.3.0.css' %}">
+  <script src="{% static 'js/jquery-3.5.0.js' %}"></script> 
+  
+<title>{% block title  %}  {% endblock %} </title>
+</head>
+ <header>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'index' %}">NetCom</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"  aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestión Facturación</a>
+              <div class="dropdown-menu">
+
+
+                <a class="dropdown-item" href="{% url 'crear_facturas' %}">Realizar Facturación</a>
+                <a class="dropdown-item" href="{% url 'buscar_facturas' %}">Ver Facturas</a> 
+               </li>
+
+         <div class="collapse navbar-collapse" id="navbarColor03">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestión Productos</a>
+               <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'crear_productos' %}">Crear  productos</a>
+                <a class="dropdown-item" href="{% url 'buscar_productos' %}">Editar y Agregar Productos</a>
+                
+            </li>
+
+            <div class="collapse navbar-collapse" id="navbarColor04">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Clientes</a>
+                     <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{% url 'crear_clientes'%}">Crear clientes</a>
+                      <a class="dropdown-item" href="{% url 'buscar_clientes'%}">Buscar y Editar Clientes</a>
+                      <a class="dropdown-item" href="{% url 'agregar_telefonos'%}">Agregar telefono Personas</a>
+                  </li>
+
+
+
+
+                      <div class="collapse navbar-collapse" id="navbarColor04">
+                        <ul class="navbar-nav mr-auto">
+                          <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sucursales</a>
+                             <div class="dropdown-menu">
+                              <a class="dropdown-item" href="{% url 'crear_sucursales'%}">Crear Sucursal</a>
+                              <a class="dropdown-item" href="{% url 'buscar_sucursales'%}">Buscar y Editar Sucursales</a>
+
+                          </li>
+
+
+                          <div class="collapse navbar-collapse" id="navbarColor04">
+                            <ul class="navbar-nav mr-auto">
+                              <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Colaboradores</a>
+                                 <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="{% url 'crear_colaboradores'%}">Crear Colaborador</a>
+                                  <a class="dropdown-item" href="{% url 'buscar_colaboradores'%}">Buscar y Editar Colaboradores</a>
+        
+                              </li>        
+
+
+                  <div class="collapse navbar-collapse" id="navbarColor05">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Proveedores</a>
+                         <div class="dropdown-menu">
+                          <a class="dropdown-item" href="{% url 'crear_proveedores' %}">Crear proveedores</a>
+                          <a class="dropdown-item" href="{% url 'buscar_proveedores'%}">Buscar y Editar Proveedores</a>
+
+                      </li>
+
+                     </ul>
+                  </div>
+
+
+                  <div class="collapse navbar-collapse" id="navbarColor05">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion de Informacion</a>
+                         <div class="dropdown-menu">
+                          <a class="dropdown-item" href="{% url 'crear_categoria_productos' %}">Categorias productos</a>
+                          <a class="dropdown-item" href="{% url 'crear_marcas' %}">Marcas</a>
+                          <a class="dropdown-item" href="{% url 'crear_regimen' %}">Regimenes</a>
+                          <a class="dropdown-item" href="{% url 'crear_unidad_medidas' %}">Unidad medidas</a>
+                          <a class="dropdown-item" href="{% url 'crear_perfil_colaboradores'%}">Perfiles Colaboradores</a>
+                          <a class="dropdown-item" href="{% url 'crear_tipo_pagos' %}">Tipos de pagos</a>
+                          <a class="dropdown-item" href=""></a>
+
+                      </li>
+
+                     </ul>
+                  </div>
+
+                  <div class="collapse navbar-collapse" id="navbarColor05">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes</a>
+                         <div class="dropdown-menu">
+                          <a class="dropdown-item" href="{% url 'crear_proveedores' %}">Crear proveedores</a>
+                          <a class="dropdown-item" href="{% url 'buscar_proveedores'%}">Buscar y Editar Proveedores</a>
+
+                      </li>
+
+                     </ul>
+                  </div>
+
+
+
+                  <form class="form-inline my-2 my-lg-0">
+                    <a class="navbar-brand badge badge-warning"> Bienvenido {{ user.username | upper }}</a>
+                  </form>
+
+
+                  <form class="form-inline my-2 my-lg-0">
+                    <a class="navbar-brand badge badge-danger"href="{% url 'logout'%}"> --Salir--</a>
+                  </form>
+
+                </div>
+            </nav>
+
+   </header>
+
+  <body>
+
+
+    {% block containerIndex %}
+    {% endblock  %}
+
+    {% block crearproveedor %}
+    {% endblock  %}
+
+    {% block listaproveedor %}
+    {% endblock  %}
+
+    {% block actualizarproveedor %}
+    {% endblock %}
+
+    {% block crearcolaborador %}
+    {% endblock %}
+
+    {% block listacolaborador %}
+    {% endblock %}
+
+    {% block crearfacturas %}
+    {% endblock %}
+
+
+    {% block crearproductos %}
+    {% endblock %}
+
+
+
+    {% block actualizarproductos %}
+    {% endblock %}
+   
+    {% block actualizarsucursal %}
+    {% endblock %}
+    
+    {% block crearclientes %}
+    {% endblock %}
+
+    {% block borrarsucursal %}
+    {% endblock %}
+
+    {% block categoriaProducto %}
+    {% endblock %}
+
+    {% block crearmarcas %}
+    {% endblock %}
+    {% block crearregimen %}
+    {% endblock %}
+
+    {% block crearunidadmedida %}
+    {% endblock %}
+    
+    {% block creartipopago %}
+    {% endblock %}
+
+    {% block crearperfilcolaboradores %}
+    {% endblock %}
+
+    {% block listarmarcas %}
+    {% endblock %}
+
+    {% block listarcategoria %}
+    {% endblock %}
+
+    {% block listarregimenes %}
+    {% endblock %}
+
+    {% block listarunidadmedida %}
+    {% endblock %}
+
+    {% block listarperfilcolaborador %}
+    {% endblock %}
+
+    {% block listartipopago %}
+    {% endblock %}
+
+    {% block cancelar %}
+    {% endblock %}
+   
+   <script>
+      $(function(){
+       $('.select2').select2({
+          theme: 'bootstrap4',
+          language: 'es'
+       });
+      });    
+  </script>
+
+  </body>
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'lib/moment-2.25.3/moment-with-locales.js' %}"></script>
+  <script src="{% static 'lib/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js' %}"></script>
+  <script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %}"></script>
+  <script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %}"></script>
+  <script src="{% static 'lib/bootstrap-touchspin-4.3.0/jquery.bootstrap-touchspin.js' %}"></script>
+  <link href="{% static 'lib/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet"/>
+  <link href="{% static 'lib/bootstrap-touchspin-4.3.0/jquery.bootstrap-touchspin.css' %}" rel="stylesheet"/>
+  <script src="{% static 'lib/bootstrap-touchspin-4.3.0/jquery.bootstrap-touchspin.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.js'%}"></script>
+  <link href="{% static 'lib/select2-4.0.13/css/select2.min.css' %}" rel="stylesheet"/>
+  <link href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>
+  <script src="{% static 'js/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+  <link href="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.css' %}" rel="stylesheet"/>
+  <script type="text/javascript" src="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.js' %}"></script>
+  <script src="{% static 'autocomplete-0.3.0.js' %}"></script>
+  <script src="{% static 'select2.full.js' %}"></script>
+  <script src="{% static 'jquery.init.js' %}"></script>
+  <script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %}"></script> 
+  </html>
+

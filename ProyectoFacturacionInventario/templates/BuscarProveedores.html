@@ -1,0 +1,54 @@
+{%extends 'base.html' %}
+{% block listaproveedor %}
+{% load static %}
+{% csrf_token %}
+
+<div class="row fila1  mb-1 mt-2" >
+    <div class ="col-1 columna1 rounded ">
+  </div> 
+
+ <div class ="col-8 columna2 rounded ">
+  <form class="form-inline my-2 my-lg-6" method="GET">
+      <input class="form-control mr-sm-2" type="text" name="buscar" placeholder="Buscar por Nombre...">
+      <button class="btn btn-warning my-2 my-sm-0" type="submit">Buscar</button> 
+  </form>
+  </div>
+</div>
+
+<div class ="card-body mt-1 mb-2">   
+<table class="table table-bordered "style="background-image:url({% static 'img/f5.jpg'%});">
+<thead>
+    <tr style="background-color:#BEC0BC" >
+      
+        <td><b>Código</b></td>
+        <td><b>Nombre</b></td>
+        <td><b>Dirección</b></td>
+        <td><b>Telefono</b></td>
+        <td><b>Nit Proveedor</b></td>
+        <td><b>Estado</b></td>
+        <td><b>Nombre Contacto</b></td>
+        <td><b>Telefono Contacto</b></td>
+        <td><b>Acción</b></td>
+    </tr>
+    {% if proveedor %}
+       {% for proveedores in proveedor %}  
+     <tr>
+        <td>{{proveedores.id}}</td>
+        <td>{{proveedores.nombre_proveedor}}</td>
+        <td>{{proveedores.direccion_proveedor}}</td>
+        <td>{{proveedores.telefono_proveedor}}</td>
+        <td>{{proveedores.nit_proveedor}}</td>
+        <td>{{proveedores.estado_proveedor}}</td>
+        <td>{{proveedores.persona_contacto.nombre_persona}} {{proveedores.persona_contacto.apellido_persona}}</td>
+        <td>{{proveedores.persona_contacto.telefono_persona}}</td>
+        <td>
+           <a class= "btn btn-info" href="{% url 'editar_proveedores' proveedores.id %}">Editar</a>
+        </td> 
+      </tr>
+           {% endfor %}
+    {% else %}
+      <h1> No hay registros de solicitudes </h1>
+    {% endif %} 
+</table>
+</div>
+{% endblock %}

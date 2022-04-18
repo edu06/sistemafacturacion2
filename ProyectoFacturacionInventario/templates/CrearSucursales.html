@@ -1,0 +1,133 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block crearproveedor %}
+<form method="POST">
+    {% csrf_token %}
+      <div class="row fila1 mb-1" >    
+      <div class ="col-lg-8">
+      <div class="card-body">   
+      <div class ="col-lg-11">
+            
+            <div class ="card header"style="background-color:#FFBC14"  > 
+
+               {% if messages  %}      
+               {% for message in messages  %}
+               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>{{ message  }}</strong> 
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>  
+               {% endfor %} 
+               {% endif %}
+               
+               <h4 class="card-title"></i>Crear Sucursal</h4>
+             </div>
+
+
+   <div class ="card-body mt-1"style="background-color:#DEE3E2"> 
+   <div class="row fila2 justify-content-left mb-1" > 
+ <div class =" col-4 columna1   rounded ">    
+    <label for="{{form.nombre_sucursal.name}}">{{form.nombre_sucursal.label}}</label>
+   </div>
+    <div class =" col-5 columna2  rounded ">     
+       {{form.nombre_sucursal}}
+    </div> 
+</div>  
+   
+<div class="row fila3 justify-content-left mb-1" > 
+<div class =" col-4 columna1   rounded ">    
+   <label for="{{form.direccion_sucursal.name}}">{{form.direccion_sucursal.label}}</label>  
+</div>
+<div class =" col-6 columna2   rounded ">
+{{form.direccion_sucursal}}  
+</div>
+</div>       
+     
+<div class="row fila4  mb-1" > 
+   <div class =" col-4 columna1   rounded ">    
+   <label for="{{form.correo_sucursal.name}}">{{form.correo_sucursal.label}}</label>   
+   </div>
+   <div class =" col-4 columna2   rounded ">
+   {{form.correo_sucursal}}
+   </div>
+   </div> 
+
+   <div class="row fila5  mb-1" > 
+      <div class =" col-4 columna1   rounded ">    
+         <label for="{{form.nit_sucursal.name}}">{{form.nit_sucursal.label}}</label>
+      </div>
+      <div class =" col-3 columna2   rounded ">
+         {{form.nit_sucursal}}
+      </div>
+      </div>
+
+      <div class="row fila6 justify-content-left mb-1" > 
+         <div class =" col-4 columna1   rounded ">    
+            <label for="{{form.telefono_sucursal.name}}">{{form.telefono_sucursal.label}} 
+                      
+         </div>
+         <div class =" col-3 columna2   rounded ">
+            {{form.telefono_sucursal}}
+         </div>
+         </div>    
+        
+      <div class="row fila7 justify-content-left mb-1" > 
+         <div class =" col-4 columna1   rounded ">    
+            <label for="{{form.regimen.name}}">{{form.regimen.label}}</label> 
+         </div>
+         <div class =" col-3 columna2 rounded ">
+            {{form.regimen}}
+         </div>
+         </div>  
+       
+         <div class="row fila8 justify-content-left mb-1" > 
+            <div class =" col-4 columna1   rounded ">    
+               <label for="{{form.prefijo.name}}">{{form.prefijo.label}}</label>  
+            </div>
+            <div class =" col-3 columna2 rounded "value="disabled" >
+               
+               {{form.prefijo}}
+              
+            </div>
+            </div>   
+        <h6>Seleccionar colaborador a cargo de sucursal </h6>
+
+        <div class="row fila8 justify-content-left mb-1" > 
+         <div class =" col-4 columna1   rounded ">    
+            <label for="{{form.colaborador_encargado.name}}">{{form.colaborador_encargado.label}}</label>  
+         </div>
+         <div class =" col-6 columna2 rounded "value="disabled" >
+            
+            {{form.colaborador_encargado}}
+           
+         </div>
+         </div>    
+           
+                           
+                                          <div class="row fila13 justify-content-center mb-1 mt-5" > 
+                                             <div class =" col-3  columna1   rounded ">    
+                                               <button type="submit" class="btn btn-success">Guardar</button>
+                                             </div>
+                                             <div class =" col-3  columna2 block-content-end   rounded ">
+                                                <button type="reset"  class="btn btn-info">Limpiar</button>
+                                             </div>
+                                             <div class =" col-3  columna2 block-content-end   rounded ">
+                                                <a class= "btn btn-warning" href="{% url 'index' %}">Regresar</a>
+                                             </div>
+                                          </div> 
+  
+                                       </div>
+        
+                                    </div>
+                                    </div>
+                                 </div>
+
+<div class="col-4 columna4 mt-2">
+   <img src="{% static 'img/sucursal.jpg' %}" class="img-fluid rounded float-end" alt="Cinque Terre">
+</div>
+
+</div>
+
+</form>
+{% endblock %}

@@ -85,26 +85,6 @@ def BuscarProductos(request):
             ).distinct()
     return render (request,"BuscarProductos.html",{"producto":producto})
 
-
-
-
-
-def BuscarProductosDelete(request):
-    producto= productos.objects.all()
-    return render (request,"AgregarProductos.html",{"producto":producto})
-
-
-def BuscarProductosAgregar(request):
-    busqueda= request.GET.get("buscar")
-    producto= productos.objects.all()
-
-    if busqueda:
-        producto=productos.objects.filter(
-            Q(descripcion_producto__icontains=busqueda)
-            ).distinct()
-    return render (request,"BuscarProductosAgregar.html",{"producto":producto})
-
-
 def BuscarSucursales(request):
     busqueda= request.GET.get("buscar")
     sucursal= sucursales.objects.all()
@@ -116,8 +96,11 @@ def BuscarSucursales(request):
     return render (request,"BuscarSucursales.html",{"sucursal":sucursal})
 
 
-
-
+def anular(request,pk):
+    x=encabezado_factura.objects.filter(id=pk).update(estado_factura=False)
+    return redirect('ver_facturas') 
+  #  return render (request,"MensajeAnularFactura.html")
+       
 
 
 #-------------------------  AQUI INCIAN LAS CLASES CREATE  ----------------------------------#

@@ -1,5 +1,5 @@
 
-
+------TRIGGER PARA SUMAR O AGREGAR PRODUCTOS A LA BASE DE DATOS---------
 CREATE OR REPLACE  
 FUNCTION sumarprod() 
 RETURNS TRIGGER AS $$ 
@@ -26,3 +26,25 @@ PARA BORRAR EL TRIGGER
 DROP TRIGGER IF EXISTS agregar_producto 
 ON "appFactInv_agregar_productos";
 __________________________________________________________________________
+
+
+-------TRIGGER PARA RESTAR PRODUCTOS A LA BASE DE DATOS CUANDO SE FACTURA ---------
+
+CREATE OR REPLACE  
+FUNCTION restarprod() 
+RETURNS TRIGGER AS $$ 
+BEGIN
+Update "appFactInv_productos"
+set existencia = existencia - new.cantidad 
+where new.producto_id=id;
+RETURN NEW;
+END;
+$$ 
+LANGUAGE plpgsql;
+
+CREATE TRIGGER agregar_producto AFTER INSERT ON "appFactInv_detalle_factura" FOR EACH ROW 
+EXECUTE PROCEDURE restarprod();
+
+
+
+

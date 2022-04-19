@@ -26,7 +26,7 @@
 
 
                 <a class="dropdown-item" href="{% url 'crear_facturas' %}">Realizar Facturación</a>
-                <a class="dropdown-item" href="{% url 'buscar_facturas' %}">Ver Facturas</a> 
+                <a class="dropdown-item" href="{% url 'ver_facturas' %}">Ver Facturas</a> 
                </li>
 
          <div class="collapse navbar-collapse" id="navbarColor03">
@@ -215,6 +215,9 @@
     {% block cancelar %}
     {% endblock %}
    
+    {% block verfacturas %}
+    {% endblock %}
+
    <script>
       $(function(){
        $('.select2').select2({

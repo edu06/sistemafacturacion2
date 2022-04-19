@@ -1,5 +1,5 @@
 {%extends 'base.html' %}
-{% block listacolaborador %}
+{% block verfacturas %}
 {% load static %}
 {% csrf_token %}
 
@@ -43,7 +43,7 @@
           <a class= "btn btn-info" href="{% url 'crear_pdf' encabezado_factura.id %}">Detalle PDF</a>
        </td> 
        <td>
-        <a class= "btn btn-danger" href="{% url 'crear_pdf' encabezado_factura.id %}">Anular</a>
+        <a class= "btn btn-danger" href="{% url 'anular_factura' encabezado_factura.id %}">Anular</a>
      </td> 
 
 

@@ -9,10 +9,10 @@
 
 <div class="row fila13 justify-content-center mb-1 mt-5" > 
     <div class =" col-2  columna1   rounded ">    
-      <button type="submit" class="btn btn-danger"href="{% url 'borrar_productos' productos.id %}">Anular</button>
+      <button type="submit" class="btn btn-danger"href="{% url 'anular_factura' encabezado_factura.id %}">Anular</button>
     </div>
 <div class =" col-3  columna2 block-content-end   rounded ">
-    <a class= "btn btn-warning" href="{% url 'buscar_facturas' %}">Cancelar</a>
+    <a class= "btn btn-warning" href="{% url 'ver_facturas' %}">Cancelar</a>
      </div>
  </div> 
 </form>

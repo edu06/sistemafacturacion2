@@ -788,6 +788,9 @@ class EditarColaboradores(UpdateView):
         else:
             return HttpResponseRedirect(self.get_success_url())
 
+
+
+
 #---------------------------  AQUI INICIAN LAS CLASES  AGREGAR  ----------------------------------------------#
 
 class AgregarProductos(UpdateView):

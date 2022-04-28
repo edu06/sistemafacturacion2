@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-
+import pymysql  
+pymysql.install_as_MySQLdb()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -86,12 +87,12 @@ WSGI_APPLICATION = 'ProyectoFacturacionInventario.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bdfacturacion',
-        'USER':'postgres',
-        'PASSWORD':'0512',
+        'USER':'root',
+        'PASSWORD':'Asqkl200+',
         'HOST':'localhost',
-        'PORT':'5432',
+        'PORT':'3306',
 
     }
 }

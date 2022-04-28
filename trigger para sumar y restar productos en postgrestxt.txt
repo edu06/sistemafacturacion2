@@ -42,7 +42,7 @@ END;
 $$ 
 LANGUAGE plpgsql;
 
-CREATE TRIGGER agregar_producto AFTER INSERT ON "appFactInv_detalle_factura" FOR EACH ROW 
+CREATE TRIGGER restar_producto AFTER INSERT ON "appFactInv_detalle_factura" FOR EACH ROW 
 EXECUTE PROCEDURE restarprod();
 
 

@@ -7,6 +7,7 @@ status=[
 (1,'Activo'),
 (0,'Inactivo'),
 ]
+
 class personas(models.Model):
     nombre_persona=models.CharField(max_length=60)
     apellido_persona=models.CharField(max_length=60)
@@ -158,7 +159,7 @@ class encabezado_factura(models.Model):
     fecha_venta=models.DateField(default=datetime.now)
     sucursal=models.ForeignKey(sucursales,on_delete=models.CASCADE)
     colaborador=models.ForeignKey(colaboradores,on_delete=models.CASCADE)
-    estado_factura=models.IntegerField(null=False,blank=False,choices=status,default=1)
+    estado_factura=models.BooleanField(default=True)
     tipo_pago=models.ForeignKey(tipo_pagos,on_delete=models.CASCADE)
     descuento_total=models.DecimalField(default=0.00,max_digits=6,decimal_places=2)
     total = models.DecimalField(default=0.00, max_digits=6, decimal_places=2)
@@ -183,7 +184,7 @@ class encabezado_factura(models.Model):
         ordering = ['id']
 
 class detalle_factura(models.Model):
-    venta=models.ForeignKey(encabezado_factura, on_delete=models.CASCADE)
+    venta=models.ForeignKey(encabezado_factura,on_delete=models.CASCADE)
     producto=models.ForeignKey(productos,on_delete=models.CASCADE)
     precio=models.DecimalField(   max_digits=9, decimal_places=4)
     cantidad=models.IntegerField(default=0)
@@ -210,5 +211,7 @@ class detalle_factura(models.Model):
 class clientes(models.Model):
     persona=models.ForeignKey(personas,on_delete=models.CASCADE)
     prefijo=models.CharField(max_length=4,default="CLI")
+
+
 
 

@@ -1,0 +1,22 @@
+delimiter $$    
+CREATE TRIGGER agregar_producto 
+AFTER INSERT ON appfactinv_agregar_productos 
+FOR EACH ROW
+begin
+Update appfactinv_productos
+set appfactinv_productos.existencia = appfactinv_productos.existencia + new.cantidad_agregar
+where new.producto_id=id;
+end$$
+delimiter :
+
+
+delimiter $$    
+CREATE TRIGGER restar_productos 
+AFTER INSERT ON appfactinv_detalle_factura
+FOR EACH ROW
+begin
+Update appfactinv_productos
+set appfactinv_productos.existencia = appfactinv_productos.existencia - new.cantidad
+where new.producto_id=id;
+end$$
+delimiter :

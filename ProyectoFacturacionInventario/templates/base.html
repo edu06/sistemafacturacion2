@@ -221,18 +221,26 @@
     {% block editar_estatus %}
     {% endblock %}
 
+     {% block editJS  %}
+     {% endblock %}
+
+     {% block modal %}
+     {% endblock %}
 
 
-   <script>
-      $(function(){
+
+
+   <script>  
+     $(function(){
        $('.select2').select2({
           theme: 'bootstrap4',
           language: 'es'
        });
-      });    
+      }); 
   </script>
-
   </body>
+
+
   <script src="{% static 'js/bootstrap.min.js'%}"></script>
   <script src="{% static 'lib/moment-2.25.3/moment-with-locales.js' %}"></script>
   <script src="{% static 'lib/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js' %}"></script>

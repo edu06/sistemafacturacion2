@@ -2,13 +2,20 @@
 {% load static  %}
 {% block title %} Inicio {% endblock %}
 {% block containerIndex %}
+
+<head>
+<style>
+#fondo{
+ background-image: url({% static 'img/vivo.jpg'%});
+}
+</style>
+</head>
+
 <div class="row fila1 mb-0  justify-content-center ">
   <div class ="col-lg-10 col align-self-center">
-  <div class="card-body">
+
   <div class ="col-lg-11">
- 
-
-
+          
         <div class ="card header ml-5">
             <div id="carouselExampleControls rounded" class="carousel rounded slide" data-ride="carousel">
               <div class="carousel-inner rounded">
@@ -35,35 +42,34 @@
       </div>
 
 
-      <div class ="card-body mt-1 ml-5"style="background-image:url(/img/u.jpg)"   >
+  <div  class="card-body mt-2 ml-5 " id="fondo" >
+
   <div class="row fila2 justify-content-between mb-3 mt-2">
     <div class ="col-11 col-md-4 columna2 ">
-      <a href="{% url 'crear_facturas' %}"><img src="{% static 'img/caja.png' %}" class=" img-fluid rounded float-right " alt="Los Tejos" /></a>
+      <a href="{% url 'crear_facturas' %}"><img src="{% static 'img/facturacion.png' %}" class=" img-fluid rounded float-right " alt="Los Tejos" /></a>
    </div>
 
 
    <div class="col-10 col-md-4 columna3 ">
-    <a href="{% url 'ver_facturas' %}"><img src="{% static 'img/factura.png' %}" class=" img-fluid rounded float-left " alt="Los Tejos" /></a>
+    <a href="{% url 'ver_facturas' %}"><img src="{% static 'img/facturas.png' %}" class=" img-fluid rounded float-left " alt="Los Tejos" /></a>
   </div>
 </div>
-<div class="row fila3 justify-content-center mb-4">
-  <div class ="col-12 col-md-3 columna1 ">
-    <img src="{% static 'img/netcom.png' %}" class="img-fluid rounded " alt="Cinque Terre">
+<div class="row fila3 justify-content-center mb-5">
+  <div class ="col-8 col-md-3 columna1 ">
+    <img src="{% static 'img/LogoNetcomCerca.png' %}" class="img-fluid rounded " alt="Cinque Terre">
   </div>
 </div>
 <div class="row fila4 justify-content-between mb-1 mt-3">
   <div class ="col-10 col-md-4 columna1 ">
-    <a href="{% url 'admin' %}"><img src="{% static 'img/admin.png' %}" class=" img-fluid rounded float-right" alt="Los Tejos" /></a>
+    <a href="{% url 'admin' %}"><img src="{% static 'img/configuracion.png' %}" class=" img-fluid rounded float-right" alt="Los Tejos" /></a>
   </div>
  <div class="col-10 col-md-4 columna2 ">
-  <a href="{% url 'buscar_clientes'%}"><img src="{% static 'img/factura.png' %}" class=" img-fluid rounded float-left " alt="Los Tejos" /></a>
+  <a href="{% url 'buscar_clientes'%}"><img src="{% static 'img/clientes.png' %}" class=" img-fluid rounded float-left " alt="Los Tejos" /></a>
  </div>
 </div>
 </div>
      </div>
   </div>
   </div>
-  </div>
-</div>
 
 {% endblock  %}

@@ -43,16 +43,42 @@
           <a class= "btn btn-info" href="{% url 'crear_pdf' encabezado_factura.id %}">Detalle PDF</a>
        </td> 
        <td>
-        <a class= "btn btn-danger" href="{% url 'aviso_cancelar' encabezado_factura.id %}">Anular</a>
-     </td> 
+        <button type="button" class="btn btn-danger" id="btn-modalAnular" > Anular</button>
+       </td> 
 
-
-      </tr>
-           {% endfor %}
+        
+       
+       <!--Aqui inicia el modal Anular factura -->
+       
+       <div class="modal fade" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="modalAnular">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Anular Factura</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Se Anulara la Factura:   N.{{encabezado_factura.id }}</p>
+                <p>Con un Total de: Q {{encabezado_factura.total}}</p>
+              </div>
+              <div class="modal-footer">
+                <a class= "btn btn-info" href="{% url 'aviso_cancelar' encabezado_factura.id %}">Confirmar</a>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </tr>
+      {% endfor %}
     {% else %}
       <h1> No hay registros de solicitudes </h1>
     {% endif %} 
 </table>
+
 </div>
+<script src="{% static 'js/funciones.js' %}"></script>
 
 {% endblock %}
+

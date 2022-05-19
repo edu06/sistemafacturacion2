@@ -11,22 +11,13 @@ status=[
 class personas(models.Model):
     nombre_persona=models.CharField(max_length=60)
     apellido_persona=models.CharField(max_length=60)
-    direccion_persona=models.TextField(default='Ciudad')
-    nit_persona=models.CharField(max_length=10,default='C/F')
+    direccion_persona=models.TextField(default="Ciudad")
+    nit_persona=models.CharField(max_length=4,default="C/F")
     telefono_persona=models.CharField(null=True,blank=True, max_length=8)
   
     def __str__(self):
           return '%s %s %s %s'%(self.nit_persona,self.nombre_persona, self.apellido_persona, self.direccion_persona)
-
-    def toJSON(self):# toJSON devuelve los datos del modelo en forma de diccionario. 
-        item = model_to_dict(self)
-        return item
-
-    class Meta:
-        verbose_name = 'Persona'
-        verbose_name_plural = 'Personas'
-        ordering = ['id']
-
+          
 class proveedores(models.Model):
     nombre_proveedor=models.CharField(max_length=60)
     direccion_proveedor=models.TextField()
@@ -113,7 +104,7 @@ class sucursales(models.Model):
         return self.nombre_sucursal
 
 class productos(models.Model):
-    existencia=models.PositiveIntegerField(default=0)
+    existencia=models.PositiveIntegerField(null=False,blank=False ,default=0)
     nombre_producto=models.TextField()
     descripcion_producto=models.TextField(null=True,blank=True)
     categoria_producto=models.ForeignKey(categoria_productos,null=True,on_delete=models.CASCADE)

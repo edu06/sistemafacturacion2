@@ -1,39 +1,42 @@
 DELIMITER $$
-CREATE PROCEDURE  anularfactura(no_factura int)
+CREATE PROCEDURE anular_factura(no_factura int)
    BEGIN
       DECLARE existe_factura int;
 	  DECLARE registros int;
 	  DECLARE a int;
-	  DECLARE cod_producto int;
+	  DECLARE cod_producto int; 
 	  DECLARE cant_producto int;
 	  DECLARE existencia_actual int;
 	  DECLARE nueva_existencia int;
-	SET existe_factura = (SELECT COUNT(*) FROM appFactInv_encabezado_factura WHERE id=no_factura and estado_factura=True);
-	IF existe_factura >0 THEN
-	CREATE TEMPORARY TABLE tbl_tmp(
-		id int auto_increment primary key,
+      
+	SET existe_factura = (SELECT COUNT(*) FROM appFactInv_encabezado_factura WHERE id=no_factura AND estado_factura=1);
+	IF  existe_factura > 0 THEN
+      CREATE TEMPORARY TABLE tbl_tmp(
+		id_table bigint not null auto_increment,
 		cod_prod int,
-		cant_prod int);
+		cant_prod int,
+        primary key(id_table)
+        );
 		
 		SET a=1;
 		SET registros =(SELECT COUNT(*)FROM appFactInv_detalle_factura WHERE venta_id=no_factura);
-		IF registro>0 THEN 
-		    INSERT INTO tbl_tmp(cod_prod,cant_prod)SELECT producto_id,venta_id FROM appFactInv_detalle_factura WHERE venta_id=no_factura;
+		IF registros > 0 THEN 
+	    
+        INSERT INTO tbl_tmp(cod_prod,cant_prod)SELECT producto_id,cantidad FROM appFactInv_detalle_factura WHERE venta_id=no_factura;
 			
-			
-			while a<=registros DO
-			   SELECT cod_prod,cant_prod INTO cod_producto,cant_producto FROM tbl_tmp WHERE id=a;
+            while a <= registros DO
+			   SELECT cod_prod,cant_prod INTO cod_producto,cant_producto FROM tbl_tmp WHERE id_table=a;
 			   SELECT existencia INTO existencia_actual FROM appFactInv_productos WHERE id=cod_producto;
-			   SELECT nueva_existencia=existencia_actual+cant_producto;
-			   UPDATE appFactInv_productos SET existencia=nueva_existencia WHERE id=cod_producto;
+			   SET nueva_existencia=existencia_actual + cant_producto;
+			   UPDATE appFactInv_productos SET existencia = nueva_existencia WHERE id=cod_producto;
 			   SET a=a+1;
 			END While;
-			UPDATE appFactInv_encabezado_factura SET estado_factura = False WHERE id=no_factura;
-			DROP TABLE. tbl_tmp;
-			SELECT * FROM appFactInv_encabezado_factura WHERE  id=no_factura;
+			UPDATE appFactInv_encabezado_factura SET estado_factura = 0 WHERE id=no_factura;
+		DROP TABLE tbl_tmp;
+			SELECT * FROM appFactInv_encabezado_factura WHERE id=no_factura;
 		END IF;
 	ELSE 
-	    SELECT 0 factura;
+	    SELECT 0 appFactInv_encabezado_factura;
     END IF;
 END;$$ 
 DELIMITER ;

@@ -12,17 +12,28 @@ class personas(models.Model):
     nombre_persona=models.CharField(max_length=60)
     apellido_persona=models.CharField(max_length=60)
     direccion_persona=models.TextField(default="Ciudad")
-    nit_persona=models.CharField(max_length=4,default="C/F")
+    nit_persona=models.CharField(max_length=10,default="C/F")
     telefono_persona=models.CharField(null=True,blank=True, max_length=8)
   
     def __str__(self):
           return '%s %s %s %s'%(self.nit_persona,self.nombre_persona, self.apellido_persona, self.direccion_persona)
+
+
+    def toJSON(self):# toJSON devuelve los datos del modelo en forma de diccionario. 
+        item = model_to_dict(self)
+        return item
+
+    class Meta:
+        verbose_name = 'Persona'
+        verbose_name_plural = 'Personas'
+        ordering = ['id']
+
           
 class proveedores(models.Model):
     nombre_proveedor=models.CharField(max_length=60)
     direccion_proveedor=models.TextField()
     telefono_proveedor=models.CharField(max_length=8)
-    nit_proveedor=models.CharField( max_length=10)
+    nit_proveedor=models.CharField( max_length=10, unique=True)
     prefijo=models.CharField(max_length=4,default="PRV")
     estado_proveedor=models.IntegerField(null=False,blank=False,choices=status,default=1)
     persona_contacto=models.ForeignKey(personas,on_delete=models.CASCADE)
@@ -51,10 +62,10 @@ class unidad_medidas(models.Model):
 
 class detalle_productos(models.Model):
     fecha_creacion=models.DateField(default=datetime.now)
-    cantidad_min_stock=models.PositiveIntegerField()
+    cantidad_min_stock=models.PositiveIntegerField(max_length=2)
     estado_producto=models.IntegerField(null=False,blank=False,choices=status,default=1)
     proveedor=models.ForeignKey(proveedores,on_delete=models.CASCADE)
-    marca=models.ForeignKey(marcas,null=True,on_delete=models.CASCADE)
+    marca=models.ForeignKey(marcas,on_delete=models.CASCADE)
     unidad_medida=models.ForeignKey(unidad_medidas,on_delete=models.CASCADE)
     def toJSON(self): 
         item = model_to_dict(self)
@@ -63,26 +74,26 @@ class detalle_productos(models.Model):
 
 
 class categoria_productos(models.Model):
-    descripcion_categoria_productos=models.CharField(max_length=60)
+    descripcion_categoria_productos=models.TextField(max_length=20)
     def __str__(self):
         return self.descripcion_categoria_productos
 
 
 class regimens(models.Model):
     descripcion_regimen=models.CharField(max_length=30)
-    impuesto_regimen=models.PositiveIntegerField()
+    impuesto_regimen=models.PositiveIntegerField(max_length=2)
     def __str__(self):
         return self.descripcion_regimen
 
 class perfiles_colaboradores(models.Model):
     nombre_perfil=models.CharField(max_length=20)
-    descripcion_perfil=models.CharField(max_length=40)
+    descripcion_perfil=models.CharField(max_length=60)
     def __str__(self):
         return self.nombre_perfil
 
 
 class colaboradores(models.Model):
-    DPI_Colaborador=models.CharField(max_length=16, unique=True)
+    DPI_Colaborador=models.CharField(max_length=14, unique=True)
     correo_colaborador=models.CharField(max_length=50)
     estado_colaborador=models.IntegerField(null=False,blank=False,choices=status,default=1)
     prefijo=models.CharField(max_length=4,default="COL")
@@ -104,11 +115,11 @@ class sucursales(models.Model):
         return self.nombre_sucursal
 
 class productos(models.Model):
-    existencia=models.PositiveIntegerField(null=False,blank=False ,default=0)
+    existencia=models.PositiveIntegerField(max_length=4,default=0)
     nombre_producto=models.TextField()
-    descripcion_producto=models.TextField(null=True,blank=True)
-    categoria_producto=models.ForeignKey(categoria_productos,null=True,on_delete=models.CASCADE)
-    precio_venta=models.DecimalField(max_digits=6,decimal_places=2)
+    descripcion_producto=models.TextField()
+    categoria_producto=models.ForeignKey(categoria_productos,on_delete=models.CASCADE)
+    precio_venta=models.DecimalField(max_digits=7,decimal_places=2)
     prefijo=models.CharField(max_length=4,default="PRO")
     detalle_producto=models.ForeignKey(detalle_productos,on_delete=models.CASCADE)
 
@@ -133,9 +144,9 @@ class agregar_productos(models.Model):
     nombre_producto=models.TextField()
     existencia=models.PositiveIntegerField ()
     sucursal=models.ForeignKey(sucursales,on_delete=models.CASCADE)
-    cantidad_agregar=models.PositiveIntegerField()
+    cantidad_agregar=models.PositiveIntegerField(max_length=3)
     fecha_vencimiento=models.DateField(null=True,blank=True)
-    precio_compra=models.DecimalField(max_digits=6,decimal_places=2)
+    precio_compra=models.DecimalField(max_digits=4,decimal_places=2)
     producto=models.ForeignKey( productos,on_delete=models.CASCADE)
     
 
@@ -153,7 +164,7 @@ class encabezado_factura(models.Model):
     estado_factura=models.BooleanField(default=True)
     tipo_pago=models.ForeignKey(tipo_pagos,on_delete=models.CASCADE)
     descuento_total=models.DecimalField(default=0.00,max_digits=6,decimal_places=2)
-    total = models.DecimalField(default=0.00, max_digits=6, decimal_places=2)
+    total = models.DecimalField(default=0.00, max_digits=7, decimal_places=2)
 
     def __str__(self):
         return self.cliente.nombre_persona
@@ -177,10 +188,10 @@ class encabezado_factura(models.Model):
 class detalle_factura(models.Model):
     venta=models.ForeignKey(encabezado_factura,on_delete=models.CASCADE)
     producto=models.ForeignKey(productos,on_delete=models.CASCADE)
-    precio=models.DecimalField(   max_digits=9, decimal_places=4)
+    precio=models.DecimalField(   max_digits=7, decimal_places=4)
     cantidad=models.IntegerField(default=0)
-    descuento=models.DecimalField(default=0.00,max_digits=9,decimal_places=2)
-    subtotal=models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
+    descuento=models.DecimalField(default=0.00,max_digits=7,decimal_places=2)
+    subtotal=models.DecimalField(default=0.00, max_digits=7, decimal_places=2)
     def __str__(self):
         return self.precio
 

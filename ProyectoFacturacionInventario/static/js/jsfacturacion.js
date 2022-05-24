@@ -7,7 +7,7 @@ var vents = {
         colaborador:'',
         tipo_pago:'',
         descuento_total:'0.00',
-        total: '0.00',
+        total: '00.00',
         products:[]  
     },
     calcular_factura: function () {
@@ -236,16 +236,15 @@ $('form').on('submit',function (e) {
     parameters.append('vents', JSON.stringify(vents.items));  // convierte diccionario a tipo string y manda empaquetado como parametro los valores de vents
     
     
-    submit_with_ajax(window.location.pathname, 'Notificación', '¿Estas seguro de realizar la siguiente acción?', parameters, function () {
+    submit_with_ajax(window.location.pathname,'Notificación', '¿Estas seguro de realizar la siguiente acción?', parameters, function () {
      location.href = '/crear_facturas';  // al realizar la acccion de guardado retorna a la misma pantalla/ 
         });
 
 
 });
 
-
-
 vents.list();
+
 function submit_with_ajax(url, title, content, parameters, callback) {
     $.confirm({
     theme: 'material',
@@ -271,9 +270,7 @@ function submit_with_ajax(url, title, content, parameters, callback) {
                     contentType: false,
                 }).done(function (data) {
 
-
                     console.log(data);
-
 
                     if (!data.hasOwnProperty('error')) {
                         callback();

@@ -62,7 +62,7 @@ class unidad_medidas(models.Model):
 
 class detalle_productos(models.Model):
     fecha_creacion=models.DateField(default=datetime.now)
-    cantidad_min_stock=models.PositiveIntegerField(max_length=2)
+    cantidad_min_stock=models.PositiveIntegerField()
     estado_producto=models.IntegerField(null=False,blank=False,choices=status,default=1)
     proveedor=models.ForeignKey(proveedores,on_delete=models.CASCADE)
     marca=models.ForeignKey(marcas,on_delete=models.CASCADE)
@@ -81,7 +81,7 @@ class categoria_productos(models.Model):
 
 class regimens(models.Model):
     descripcion_regimen=models.CharField(max_length=30)
-    impuesto_regimen=models.PositiveIntegerField(max_length=2)
+    impuesto_regimen=models.PositiveIntegerField()
     def __str__(self):
         return self.descripcion_regimen
 
@@ -115,12 +115,13 @@ class sucursales(models.Model):
         return self.nombre_sucursal
 
 class productos(models.Model):
-    existencia=models.PositiveIntegerField(max_length=4,default=0)
+    existencia=models.PositiveIntegerField(default=0)
     nombre_producto=models.TextField()
     descripcion_producto=models.TextField()
     categoria_producto=models.ForeignKey(categoria_productos,on_delete=models.CASCADE)
-    precio_venta=models.DecimalField(max_digits=7,decimal_places=2)
+    precio_venta=models.DecimalField(max_digits=10,decimal_places=2)
     prefijo=models.CharField(max_length=4,default="PRO")
+    sucursal=models.ForeignKey(sucursales,on_delete=models.CASCADE)
     detalle_producto=models.ForeignKey(detalle_productos,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -142,11 +143,11 @@ class agregar_productos(models.Model):
     fecha_registro=models.DateField(default=datetime.now)
     documento=models.CharField(max_length=30)
     nombre_producto=models.TextField()
-    existencia=models.PositiveIntegerField ()
+    existencia=models.PositiveIntegerField()
     sucursal=models.ForeignKey(sucursales,on_delete=models.CASCADE)
-    cantidad_agregar=models.PositiveIntegerField(max_length=3)
+    cantidad_agregar=models.PositiveIntegerField()
     fecha_vencimiento=models.DateField(null=True,blank=True)
-    precio_compra=models.DecimalField(max_digits=4,decimal_places=2)
+    precio_compra=models.DecimalField(max_digits=8,decimal_places=2)
     producto=models.ForeignKey( productos,on_delete=models.CASCADE)
     
 
@@ -163,8 +164,8 @@ class encabezado_factura(models.Model):
     colaborador=models.ForeignKey(colaboradores,on_delete=models.CASCADE)
     estado_factura=models.BooleanField(default=True)
     tipo_pago=models.ForeignKey(tipo_pagos,on_delete=models.CASCADE)
-    descuento_total=models.DecimalField(default=0.00,max_digits=6,decimal_places=2)
-    total = models.DecimalField(default=0.00, max_digits=7, decimal_places=2)
+    descuento_total=models.DecimalField(default=0.00,max_digits=7,decimal_places=2)
+    total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.cliente.nombre_persona
@@ -188,7 +189,7 @@ class encabezado_factura(models.Model):
 class detalle_factura(models.Model):
     venta=models.ForeignKey(encabezado_factura,on_delete=models.CASCADE)
     producto=models.ForeignKey(productos,on_delete=models.CASCADE)
-    precio=models.DecimalField(   max_digits=7, decimal_places=4)
+    precio=models.DecimalField(max_digits=10,decimal_places=2)
     cantidad=models.IntegerField(default=0)
     descuento=models.DecimalField(default=0.00,max_digits=7,decimal_places=2)
     subtotal=models.DecimalField(default=0.00, max_digits=7, decimal_places=2)

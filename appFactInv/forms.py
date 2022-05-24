@@ -119,6 +119,7 @@ class formproducto(forms.ModelForm):
             'categoria_producto',
             'prefijo',
             'precio_venta',
+            'sucursal'
             
             ]
         labels = {
@@ -128,6 +129,7 @@ class formproducto(forms.ModelForm):
             'descripcion_producto': 'Descripcion Producto',
             'prefijo': 'Prefijo',
             'precio_venta':'Precio Venta',
+            'sucursal':'Sucursal'
             
             }
         widgets = {
@@ -137,6 +139,7 @@ class formproducto(forms.ModelForm):
             'descripcion_producto':forms.TextInput(attrs={'class':'form-control','placeholder':'opcional'}) ,
             'prefijo':forms.TextInput(attrs={'class':'form-control','readonly':True}),
             'precio_venta':forms.NumberInput(attrs={'class':'form-control'}),
+            'sucursal':forms.Select(attrs={'class':'form-control select2'})
             }
 
 class formsucursales(forms.ModelForm):

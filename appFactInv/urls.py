@@ -48,7 +48,7 @@ urlpatterns=[
     
     path('agregar_telefonos/',login_required(CrearTelefonosPersonas.as_view()),name="agregar_telefonos"),
     path('agregar_productos/<int:pk>/',login_required(AgregarProductos.as_view()),name="agregar_productos"),
-    path('aviso_cancelar/<int:pk>/',login_required(anular),name="aviso_cancelar"),
+    path('modal/<int:pk>/',login_required(anular),name="modal"),
        
     path('admin/',admin,name="admin"),
 

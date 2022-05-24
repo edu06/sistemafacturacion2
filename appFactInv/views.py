@@ -1,5 +1,10 @@
 
 import json
+from multiprocessing import connection
+from re import template
+from django.db import connection
+from sqlite3 import Cursor
+from unittest import result
 from xhtml2pdf import pisa
 from django.db import  transaction
 from django.db.models import Q
@@ -47,8 +52,8 @@ def BuscarFacturas(request):
     factura= encabezado_factura.objects.all().order_by('-id')
     if busqueda:
         factura=encabezado_factura.objects.filter(
-        Q(cliente__nombre_persona__icontains=busqueda)|
-        Q(cliente__nit_persona__icontains=busqueda)
+        Q(total__icontains=busqueda)|
+        Q(id__icontains=busqueda)
         ).distinct()
     return render (request,"VerFacturas.html",{"factura":factura})
 
@@ -97,11 +102,12 @@ def BuscarSucursales(request):
 
 
 def anular(request,pk):
-    x=encabezado_factura.objects.filter(id=pk).update(estado_factura=False)
-    return redirect('ver_facturas') 
-  #  return render (request,"MensajeAnularFactura.html")
-       
-
+    x=encabezado_factura.objects.filter(id=pk)
+    cursor=connection.cursor()
+    cursor.callproc('bdfacturacion.anular_factura',[pk])
+    result_set=cursor.fetchall()
+    cursor.close()
+    return redirect('ver_facturas')
 
 #-------------------------  AQUI INCIAN LAS CLASES CREATE  ----------------------------------#
  

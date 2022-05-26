@@ -32,8 +32,8 @@ class personas(models.Model):
 class proveedores(models.Model):
     nombre_proveedor=models.CharField(max_length=60)
     direccion_proveedor=models.TextField()
-    telefono_proveedor=models.CharField(max_length=8)
-    nit_proveedor=models.CharField( max_length=10, unique=True)
+    telefono_proveedor=models.CharField(max_length=8,unique=True)
+    nit_proveedor=models.CharField(max_length=10)
     prefijo=models.CharField(max_length=4,default="PRV")
     estado_proveedor=models.IntegerField(null=False,blank=False,choices=status,default=1)
     persona_contacto=models.ForeignKey(personas,on_delete=models.CASCADE)
@@ -106,8 +106,8 @@ class sucursales(models.Model):
     nombre_sucursal=models.CharField(max_length=40)
     direccion_sucursal=models.TextField()
     correo_sucursal=models.CharField(max_length=50)
-    nit_sucursal=models.CharField(max_length=10, unique=True)
-    telefono_sucursal=models.CharField(max_length=10)
+    nit_sucursal=models.CharField(max_length=10)
+    telefono_sucursal=models.CharField(max_length=10 )
     regimen=models.ForeignKey(regimens,on_delete=models.CASCADE)
     prefijo=models.CharField(max_length=4,default="SUC")
     colaborador_encargado=models.ForeignKey(colaboradores,on_delete=models.CASCADE)
@@ -121,7 +121,6 @@ class productos(models.Model):
     categoria_producto=models.ForeignKey(categoria_productos,on_delete=models.CASCADE)
     precio_venta=models.DecimalField(max_digits=10,decimal_places=2)
     prefijo=models.CharField(max_length=4,default="PRO")
-    sucursal=models.ForeignKey(sucursales,on_delete=models.CASCADE)
     detalle_producto=models.ForeignKey(detalle_productos,on_delete=models.CASCADE)
 
     def __str__(self):

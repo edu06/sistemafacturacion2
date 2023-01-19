@@ -20,3 +20,5 @@ set appfactinv_productos.existencia = appfactinv_productos.existencia - new.cant
 where new.producto_id=id;
 end$$
 delimiter :
+
+Prueba subida 

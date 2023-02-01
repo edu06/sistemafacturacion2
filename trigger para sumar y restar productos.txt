@@ -21,4 +21,4 @@ where new.producto_id=id;
 end$$
 delimiter :
 
-Prueba subida 
+Prueba subida martes

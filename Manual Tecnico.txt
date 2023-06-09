@@ -1,0 +1,13 @@
+Para correr en programa 
+__________________________
+1) Entramos a la carpeta env1 que es el entorno virtual (desde consola) 
+2) llegamos  a la carpeta bin desde la consola y digitamos: source activate
+3) Se activara el entorno virtual, y regresamos hasta la carpeta raiz del proyecto (siempre con elentorno virtual activado)
+4) ya estando en la carpeta raiz del proyecto digitamos: python3 manage.py runserver 
+Y en la consola el nos arrojara una link el cual es para ingresar a la app 
+
+
+
+ 
+
+

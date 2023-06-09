@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth.decorators import login_required
-from appFactInv.views import CrearTipoPago, Index,CrearProveedores,EditarProveedores,BuscarProveedores,CrearClientes,CrearTelefonosPersonas,CrearProductos,EditarProductos,BuscarFacturas
+from appFactInv.views import CrearTipoPago, Index,CrearProveedores,EditarProveedores,BuscarProveedores,CrearClientes,CrearTelefonosPersonas,CrearProductos,EditarProductos,BuscarFacturas,BuscarFacturas2
 from appFactInv.views import BuscarProductos,CrearColaboradores,BuscarColaboradores,EditarColaboradores,CrearSucursales,AgregarProductos,EditarTipoPagos
 from appFactInv.views import BuscarSucursales,EditarSucursales,SaleCreateView,EditarRegimen,EditarUnidadMedida,EditarPerfilColaboradores,anular
 from appFactInv.views import BuscarClientes,EditarClientes,PDFFactura,admin,Crearmarca,CrearRegimen,CrearUnidadMedida,CrearPerfilColaboradores,EditarMarcas,CrearCategoriaProducto,EditarCategoriaProducto
@@ -45,7 +45,9 @@ urlpatterns=[
     path('buscar_colaboradores/',login_required(BuscarColaboradores),name="buscar_colaboradores"),
     path('buscar_sucursales/',login_required(BuscarSucursales),name="buscar_sucursales"),
     path('ver_facturas/',login_required(BuscarFacturas),name="ver_facturas"),
-    
+    path('ver_facturas2/',login_required(BuscarFacturas2),name="ver_facturas2"),
+
+
     path('agregar_telefonos/',login_required(CrearTelefonosPersonas.as_view()),name="agregar_telefonos"),
     path('agregar_productos/<int:pk>/',login_required(AgregarProductos.as_view()),name="agregar_productos"),
     path('modal/<int:pk>/',login_required(anular),name="modal"),

@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'ProyectoFacturacionInventario.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bdfacturacion',
+        'NAME': 'facturacionbd',
         'USER':'root',
         'PASSWORD':'Asqkl200+',
         'HOST':'localhost',

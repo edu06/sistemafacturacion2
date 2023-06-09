@@ -7,6 +7,7 @@ from sqlite3 import Cursor
 from unittest import result
 from xhtml2pdf import pisa
 from django.db import  transaction
+from django.db.models import Sum ,When
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
@@ -17,6 +18,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import (CreateView, UpdateView,
                                   View)
+
+import datetime
 from django.contrib import messages
 from appFactInv.forms import (SaleForm, formagregarproductos, formclientes,
                               formcolaboradores, formdetalle_producto, formmarcas, formperfilescolaboradores,
@@ -56,6 +59,20 @@ def BuscarFacturas(request):
         Q(id__icontains=busqueda)
         ).distinct()
     return render (request,"VerFacturas.html",{"factura":factura})
+
+
+
+def BuscarFacturas2(request):
+    fromdate=request.GET.get("fromdate")
+    todate = request.GET.get("todate")
+    factura = encabezado_factura.objects.all().order_by('-id')
+    suma_total= 0 
+    if fromdate and todate:
+        factura=encabezado_factura.objects.filter(fecha_venta__range=(fromdate,todate)).filter(estado_factura='1')  
+        suma_total=encabezado_factura.objects.filter(fecha_venta__range=(fromdate,todate)).filter(estado_factura='1').aggregate(Sum('total'))
+    return render (request,'VerFacturas2.html',{"factura":factura,"sumas":suma_total})
+
+
 
 def BuscarProveedores(request):
     busqueda= request.GET.get("buscar")
@@ -104,7 +121,7 @@ def BuscarSucursales(request):
 def anular(request,pk):
     x=encabezado_factura.objects.filter(id=pk)
     cursor=connection.cursor()
-    cursor.callproc('bdfacturacion.anular_factura',[pk])
+    cursor.callproc('facturacionbd.anular_factura',[pk])
     result_set=cursor.fetchall()
     cursor.close()
     return redirect('ver_facturas')
